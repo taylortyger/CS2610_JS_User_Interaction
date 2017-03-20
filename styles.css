@@ -1,0 +1,45 @@
+.fib, .pell, .trib 
+{ 
+    display: inline-block;
+    white-space: nowrap;
+    text-align: center;
+    vertical-align: top;
+    font-size: 12px;
+    font-family: monospace;
+}
+
+.fib-left, .pell-left, .trib-left, .trib-middle
+{
+    margin-right: 5px;
+}
+
+.fib p, .pell p, .trib p
+{
+padding: 3px;
+}
+
+.fib
+{
+    background-color: rgba(0,100,255,0.09);
+}
+
+.pell
+{
+    background-color: rgba(255,50,0,0.09);
+}
+
+.trib
+{
+    background-color: rgba(100, 10, 255, 0.09);
+}
+h2
+{
+    font-family: Arial;
+    font-size: 32px;
+    color: #333333;
+}
+
+p
+{
+    font-family: Arial;
+}
