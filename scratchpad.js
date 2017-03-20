@@ -13,33 +13,14 @@
 //------------------------------------------------------------------------
 function addCallGraphs(fibHTML, pellHTML, tribHTML)
 {
-    var fibDiv = document.createElement('div');
-    fibDiv.id = "fibonacci-section";
-    var fibH2 = document.createElement('h2');
-    fibH2.textContent = "Call Graph for Fibonacci Sequence:";
-    fibDiv.appendChild(fibH2);
+    var fibDiv = document.getElementById('fibonacci-section');
     fibDiv.appendChild(fibHTML);
-    
-    var pellDiv = document.createElement('div');
-    pellDiv.id = "pell-section";
-    var pellH2 = document.createElement('h2');
-    pellH2.textContent = "Call Graph for Pell Sequence:";
-    pellDiv.appendChild(pellH2);
+  
+    var pellDiv = document.getElementById('pell-section');
     pellDiv.appendChild(pellHTML);
     
-    var tribDiv = document.createElement('div');
-    tribDiv.id = "tribonacci-section";
-    var tribH2 = document.createElement('h2');
-    tribH2.textContent = "Call Graph for Tribonacci Sequence:";
-    tribDiv.appendChild(tribH2);
+    var tribDiv = document.getElementById('tribonacci-section');
     tribDiv.appendChild(tribHTML);
-    
-    var callGraphDiv = document.createElement('div');
-    callGraphDiv.id = "call-graphs";
-    callGraphDiv.appendChild(fibDiv);
-    callGraphDiv.appendChild(pellDiv);
-    callGraphDiv.appendChild(tribDiv);
-    document.body.appendChild(callGraphDiv);
 }
 
 //--------------------------------------------------------------------
@@ -177,60 +158,9 @@ function calcTribonacci(n)
     return {'value': val, 'div': currDiv};
 }
 
-//------------------------------------------------------------------------------
-//
-//  Function factory for creating functions to inject a specific series' info
-//  above the call graph:
-//      seriesName      - name of the series 
-//                              (must be how it appears elswhere in document)
-//      seriesFunction  - a string of the mathematical function for the series
-//      seriesLink      - hyperlink to a webpage with more info on the series
-//
-//------------------------------------------------------------------------------
-function seriesInfoDivMakerFactory(seriesName, seriesFunction, seriesLink)
-{
-    return function()
-    {
-        var div = document.createElement('div');
-        div.setAttribute('class', 'series-info');
-        div.innerHTML  = '<p>The ' + seriesName + ' sequence is represented by the following function: <i>' + seriesFunction + '</i></p>';
-        div.innerHTML += '<p>For more details about the ' + seriesName + ' sequence, <a href="' + seriesLink + '">go here to learn more.</a>';
-        var parent = document.getElementById(seriesName + '-section');
-        parent.insertBefore(div, parent.firstChild.nextSibling);
-    };
-}
-
-//Function to inject fibonocci sequence info above call graph
-var addFibInfo = seriesInfoDivMakerFactory( 'fibonacci', 
-                                            'F(n) = F(n-1) + F(n-2) with F(0) = 0 and F(1) = 1', 
-                                            'https://oeis.org/A000045'
-                                            );
-//Function to inject pell sequence info above call graph
-var addPellInfo = seriesInfoDivMakerFactory('pell', 
-                                            'a(0) = 0, a(1) = 1; for n > 1, a(n) = 2*a(n-1) + a(n-2)', 
-                                            'https://oeis.org/A000129'
-                                            );
- //Function to inject tribonacci sequence info above call graph
-var addTribInfo = seriesInfoDivMakerFactory('tribonacci',
-                                            'a(n) = a(n-1) + a(n-2) + a(n-3) with a(0)=a(1)=0, a(2)=1',
-                                            'https://oeis.org/A000073'
-                                            );
-
-//-----------------------------------------------------------------------
-//
-//  Adds series info and hyperlinks for each series to the webpage 
-//
-//-----------------------------------------------------------------------
-function addAllSeriesInfo()
-{
-    addFibInfo();
-    addPellInfo();
-    addTribInfo();
-}
 
 /*********************************************************************
  *                       EXECUTED JAVASCRIPT:                        *
  *********************************************************************/
  
 addCallGraphs(calcFibonacci(11).div, calcPell(11).div, calcTribonacci(11).div);
-addAllSeriesInfo();
