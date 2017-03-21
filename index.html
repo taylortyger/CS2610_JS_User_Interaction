@@ -7,36 +7,39 @@
 </head>
 <body>
    <div id="fibonacci-section">
-      <h2>Call Graph for Fibonacci Sequence:</h2>
+      <h2>Fibonacci Sequence:</h2>
       <div class="series-info">
          <p>The fibonacci sequence is represented by the following function: <i>F(n) = F(n-1) + F(n-2) with F(0) = 0 and F(1) = 1</i></p>
          <p>For more details about the fibonacci sequence, <a href="https://oeis.org/A000045">go here to learn more.</a></p>
       </div>
+      <h3>Use the slider below to generate a call graph for the Nth number in the fibonacci sequence:</p=h3>
       <form>
    		<input type="range" min="0" max="11" value="0" id="fib-slider" class="slider">
-   		<button type="button" id="fib-button">Fib(0)</button>
+   		<button type="button" class="seq-button" id="fib-button">Fib(0)</button>
       </form>
    </div>
    <div id="pell-section">
-      <h2>Call Graph for Pell Sequence:</h2>
+      <h2>Pell Sequence:</h2>
       <div class="series-info">
          <p>The pell sequence is represented by the following function: <i>a(0) = 0, a(1) = 1; for n &gt; 1, a(n) = 2*a(n-1) + a(n-2)</i></p>
          <p>For more details about the pell sequence, <a href="https://oeis.org/A000129">go here to learn more.</a></p>
       </div>
+      <h3>Use the slider below to generate a call graph for the Nth number in the pell sequence:</h3>
       <form>
    		<input type="range" min="0" max="11" value="0" id="pell-slider" class="slider">
-   		<button type="button" id="pell-button">Pell(0)</button>
+   		<button type="button" class="seq-button" id="pell-button">Pell(0)</button>
       </form>
    </div>
    <div id="tribonacci-section">
-      <h2>Call Graph for Tribonacci Sequence:</h2>
+      <h2>Tribonacci Sequence:</h2>
       <div class="series-info">
-         <p>The tribonacci sequence is represented by the following function: <i>a(n) = a(n-1) + a(n-2) + a(n-3) with a(0)=a(1)=0, a(2)=1</i></p>
+         <p>The tribonacci sequence is represented by the following function: <i>a(n) = a(n-1) + a(n-2) + a(n-3) with a(0)=0, a(1)=0, a(2)=1</i></p>
          <p>For more details about the tribonacci sequence, <a href="https://oeis.org/A000073">go here to learn more.</a></p>
       </div>
+      <h3>Use the slider below to generate a call graph for the Nth number in the tribonacci sequence:</h3>
       <form>
    		<input type="range" min="0" max="11" value="0" id="trib-slider" class="slider">
-   		<button type="button" id="trib-button">Trib(0)</button>
+   		<button type="button" class="seq-button" id="trib-button">Trib(0)</button>
       </form>
    </div>
    

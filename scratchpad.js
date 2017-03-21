@@ -1,28 +1,3 @@
-/*********************************************************************
- *                           FUNCTIONS                               *
- *********************************************************************/
-
-//------------------------------------------------------------------------
-//
-//  add divs to the DOM (body) to hold the recursive function call graphs
-//
-//      fibHTML, pellHTML, tribHTML: 
-//          expected to be HTML element containing resulting call graph of 
-//          the respective series/recursive function
-//
-//------------------------------------------------------------------------
-function addCallGraphs(fibHTML, pellHTML, tribHTML)
-{
-    var fibDiv = document.getElementById('fibonacci-section');
-    fibDiv.appendChild(fibHTML);
-  
-    var pellDiv = document.getElementById('pell-section');
-    pellDiv.appendChild(pellHTML);
-    
-    var tribDiv = document.getElementById('tribonacci-section');
-    tribDiv.appendChild(tribHTML);
-}
-
 //--------------------------------------------------------------------
 //
 //  Fibonacci Sequence:
@@ -39,10 +14,10 @@ function calcFibonacci(n)
     
     if(n < 2)
     {
-        if(n === 0){ 
+        if(n == 0){ 
             val = 0;
         }
-        else if (n===1){ 
+        else if (n == 1){ 
             val = 1;
         }
         p.textContent = "fib(" + n + ") = " + val;
@@ -81,10 +56,10 @@ function calcPell(n)
     
     if(n < 2)
     {
-        if(n === 0){ 
+        if(n == 0){ 
             val = 0;
         }
-        else if (n === 1){ 
+        else if (n == 1){ 
             val = 1;
         }
         p.textContent = "pell(" + n + ") = " + val;
@@ -123,15 +98,15 @@ function calcTribonacci(n)
     
     if(n < 3)
     {
-        if(n === 0)
+        if(n == 0)
         { 
             val = 0;
         }
-        else if (n === 1)
+        else if (n == 1)
         { 
             val = 0;
         }
-        else if (n === 2)
+        else if (n == 2)
         {
             val = 1;
         }
@@ -158,16 +133,10 @@ function calcTribonacci(n)
     return {'value': val, 'div': currDiv};
 }
 
-/*********************************************************************
- *                       EXECUTED JAVASCRIPT:                        *
- *********************************************************************/
- 
-addCallGraphs(calcFibonacci(11).div, calcPell(11).div, calcTribonacci(11).div);
-
 //----------------------------------------------------------
 //
-//  Update each of the three sliders button value when the 
-//  slider value changes.
+//  onchange event listener to update each of the three 
+//  slider's button value when the slider value changes.
 //
 //----------------------------------------------------------
 var sliders = document.getElementsByClassName('slider');
@@ -189,5 +158,40 @@ for(var i = 0; i < sliders.length; i++)
     	var form = this.parentNode;
     	var button = form.querySelector('button');
     	button.textContent = prefix + '(' + this.value + ')';
+    };
+}
+
+//----------------------------------------------------------------------------
+//
+//  onclick event listener to calculate and add call graph when corresponding
+//  button is clicked.
+//
+//----------------------------------------------------------------------------
+var buttons = document.getElementsByClassName('seq-button');
+for(var button = 0; button < buttons.length; button++)
+{
+    buttons[button].onclick = function() {
+        var val = this.parentNode.querySelector('input').value;
+        var callGraph;
+        var section;
+        switch(this.id){
+            case "fib-button":
+                callGraph = calcFibonacci(val).div;
+                section = document.getElementById('fibonacci-section');
+                break;
+            case "pell-button":
+                callGraph = calcPell(val).div;
+                section = document.getElementById('pell-section');
+                break;
+            case "trib-button":
+                callGraph = calcTribonacci(val).div;
+                section = document.getElementById('tribonacci-section');
+                break;
+        }
+        if(section.querySelector('.'+callGraph.className))
+        {
+            section.removeChild(section.querySelector('.'+callGraph.className));
+        }
+        section.appendChild(callGraph);
     };
 }
