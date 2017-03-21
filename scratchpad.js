@@ -158,9 +158,36 @@ function calcTribonacci(n)
     return {'value': val, 'div': currDiv};
 }
 
-
 /*********************************************************************
  *                       EXECUTED JAVASCRIPT:                        *
  *********************************************************************/
  
 addCallGraphs(calcFibonacci(11).div, calcPell(11).div, calcTribonacci(11).div);
+
+//----------------------------------------------------------
+//
+//  Update each of the three sliders button value when the 
+//  slider value changes.
+//
+//----------------------------------------------------------
+var sliders = document.getElementsByClassName('slider');
+for(var i = 0; i < sliders.length; i++)
+{
+    sliders[i].onchange = function() {
+        var prefix = '';
+        switch(this.id){
+            case "fib-slider":
+                prefix = 'Fib';
+                break;
+            case "pell-slider":
+                prefix = 'Pell';
+                break;
+            case "trib-slider":
+                prefix = 'Trib';
+                break;
+        }
+    	var form = this.parentNode;
+    	var button = form.querySelector('button');
+    	button.textContent = prefix + '(' + this.value + ')';
+    };
+}
